@@ -47,6 +47,6 @@ Inside component every 20ms y coord is updated and an event is fire to the arena
 This roughtly video (handmade by smartphone 😂) shows final behaviour.
 This is a starting point for further improvements
 
-https://github.com/gaggioma/SpaceShooter/blob/main/video/ResultVideo.mp4
+https://user-images.githubusercontent.com/64643932/211046565-3b2a0d18-860b-477d-abcc-1d09f9e08853.mp4
 
 ## Further improvements
