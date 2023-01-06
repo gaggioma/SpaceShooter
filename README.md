@@ -8,10 +8,10 @@ For this purpose i have implemented a custom and rudimental (but funny) of the l
 ## Implementation
 
 Mainly this game is composed by these elements/components:
-- Arena
-- Spacecraft
-- Enemies
-- Shot
+- [Arena](#arena)
+- [Spacecraft](#spacecraft)
+- [Enemies](#enemies)
+- [Shot](#enemies)
 
 ### Arena
 
