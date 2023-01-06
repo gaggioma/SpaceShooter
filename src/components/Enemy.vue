@@ -41,6 +41,7 @@ watch(() => props.id, (newValue) => {
     idState.value = newValue;
 });
 
+//Randomically chose the image on mount
 onMounted(() => {
 
     if(Math.random() >= 0.5){
