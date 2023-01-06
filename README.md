@@ -3,15 +3,19 @@
 ## Purpose
 During these boring christams holidays i tried to study in the deep the new release of [Vue.js](https://vuejs.org/), but i had to find something on which both to test this new rewrited framework, see the performance and know if the simplicity of write code could induce me to adopt it respect to its ancestor.<br/> 
 
-For this purpose i have implemented a custom and rudimental (but funny) of the legendary game [Space Invaders](https://en.wikipedia.org/wiki/Space_Invaders).<br/>
+For this purpose i have implemented a custom and rudimental game (but funny) of the legendary [Space Invaders](https://en.wikipedia.org/wiki/Space_Invaders).<br/>
 
 ## Implementation
 
-Mainly this game is composed by these elements/components:
+Mainly this game is composed by these elements:
 - [Arena](#arena)
 - [Spacecraft](#spacecraft)
 - [Enemies](#enemies)
 - [Shot](#enemies)
+
+All these elments have been implemented like Vue components.
+
+In the follow a brief description.
 
 ### Arena
 
@@ -40,7 +44,7 @@ Inside component every 20ms y coord is updated and an event is fire to the arena
 
 ## Results
 
-This roughtly video (handmade by smartphone) shows final behaviour.
+This roughtly video (handmade by smartphone 😂) shows final behaviour.
 This is a starting point for further improvements
 
 https://github.com/gaggioma/SpaceShooter/blob/main/video/ResultVideo.mp4
