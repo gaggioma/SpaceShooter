@@ -1,7 +1,7 @@
 # Space Shooter  🎅 🧙‍♀️ 🔫
 
 ## Purpose
-During these boring christams holidays i tried to study in the deep the new release of [Vue.js](https://vuejs.org/), but i had to find something on which both to test this new rewrited framework, see the performance and if the simplicity of write code could induce me to adopt it respect to its ancestor.<br/> 
+During these boring christams holidays i tried to study in the deep the new release of [Vue.js](https://vuejs.org/), but i had to find something on which both to test this new rewrited framework, see the performance and knoe if the simplicity of write code could induce me to adopt it respect to its ancestor.<br/> 
 
 For this purpose i have implemented a custom and rudimental (but funny) of the legendary game [Space Invaders](https://en.wikipedia.org/wiki/Space_Invaders).<br/>
 
