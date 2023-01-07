@@ -3,7 +3,7 @@
 ## Purpose
 During these boring christams holidays i tried to study in the deep the new release of [Vue.js](https://vuejs.org/), but i had to find something on which both to test this new rewrited framework, see the performance and know if the simplicity of write code could induce me to adopt it respect to its ancestor.<br/> 
 
-For this purpose i have implemented a custom and rudimental game (but funny) of the legendary [Space Invaders](https://en.wikipedia.org/wiki/Space_Invaders).<br/>
+For this purpose i have implemented a custom and coarse (but funny) copy of the legendary game [Space Invaders](https://en.wikipedia.org/wiki/Space_Invaders).<br/>
 
 ## Implementation
 
@@ -21,7 +21,7 @@ In the follow a brief description.
 
 This component works like a H.O.C. which controls:
 - spacecraft, enemies and shot cartesian coords
-- generates enemies
+- generates enemies every N ms
 - check if shot impacts enemy
 - check that all components stay inside a perimetral bounds
 - create the listener for user interaction
@@ -39,8 +39,8 @@ Single enemy has been implemented like a component that contains a single image 
 
 ### Shot
 
-Shot is a component contains a single image, when user push spacebar button arena create new component with initial (x,y) coords.
-Inside component every 20ms y coord is updated and an event is fire to the arena which check if shot impact enemy. 
+Shot is a component contains a single image, when user push spacebar button arena create new component with initial (x,y) coords (center of spacecraft).
+Inside component, every 20ms, y coord is updated and an event is fired to the arena which check if shot impact enemy. 
 
 ## Results
 
