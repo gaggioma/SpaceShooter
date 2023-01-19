@@ -1,6 +1,6 @@
 <template>
 
-<div class="spacecraftClass" :style="{left: left + 'px', width: spacecraftWidth + 'px', height: spacecraftHeight + 'px'}">
+<div class="spacecraftClass" :style="{left: left + 'px', top: top + 'px', width: spacecraftWidth + 'px', height: spacecraftHeight + 'px'}">
     <img :src="spacecraftImage" :style="{width: '100%'}"/>
 </div>
   
@@ -17,6 +17,7 @@ const props = defineProps([
     "direction",
     "shoot",
     "arenaWidth",
+    "arenaHeight",
     "width",
     "height"
 ]);
@@ -39,33 +40,87 @@ const movStep = ref(5);
 //Varing margin left, spacecraft will be moved left or right
 const left = ref(props.arenaWidth / 2);
 
+//varing margin to, spacecraft will move up or down
+const top = ref(props.arenaHeight - props.height)
+
 //Timer direction
-const timerDirectionFunction = ref();
+const timerDirectionFunctionLeft = ref();
+const timerDirectionFunctionRight = ref();
+const timerDirectionFunctionUp = ref();
+const timerDirectionFunctionDown = ref();
 
 //Every time direction prop chenge move spacecraft left or right
 watch(() => props.direction, (newVal) => {
     
     //Clear previous timer instance
-    clearInterval(timerDirectionFunction.value);
+    if(newVal.direction === "left" && newVal.state === "stop"){
+        clearInterval(timerDirectionFunctionLeft.value);
+        return null;
+    }
 
-    if(newVal === "left"){
-        timerDirectionFunction.value = window.setInterval(() => {
+    if(newVal.direction === "left" && newVal.state === "go"){
+        clearInterval(timerDirectionFunctionLeft.value);
+        timerDirectionFunctionLeft.value = window.setInterval(() => {
             if(left.value - movStep.value <= 0){
                 left.value = 0
             }else{
                 left.value = left.value - movStep.value;    
             }
-        }, 10);        
+        }, 10);
+        return null;     
     }
 
-    if(newVal === "right"){
-        timerDirectionFunction.value = window.setInterval(() => {
+    if(newVal.direction === "right" && newVal.state === "stop"){
+        clearInterval(timerDirectionFunctionRight.value);
+        return null;
+    }
+
+    if(newVal.direction === "right" && newVal.state === "go"){
+        clearInterval(timerDirectionFunctionRight.value);
+        timerDirectionFunctionRight.value = window.setInterval(() => {
             if(left.value + movStep.value + spacecraftWidth.value > props.arenaWidth){
                 left.value = props.arenaWidth - spacecraftWidth.value;
             }else{
                 left.value = left.value + movStep.value;
             }
-        }, 10);         
+        }, 10);
+        return null;  
+    }
+
+    if(newVal.direction === "up" && newVal.state === "stop"){
+        clearInterval(timerDirectionFunctionUp.value);
+        return null;
+    }
+
+    if(newVal.direction === "up" && newVal.state === "go"){
+        clearInterval(timerDirectionFunctionUp.value);
+        timerDirectionFunctionUp.value = window.setInterval(() => {
+            //upper bound condition
+            if(top.value - movStep.value < 0){
+                top.value = 0;
+            }else{
+                top.value = top.value - movStep.value;
+            }
+        }, 10);
+        return null;         
+    }
+
+    if(newVal.direction === "down" && newVal.state === "stop"){
+        clearInterval(timerDirectionFunctionDown.value);
+        return null;
+    }
+
+    if(newVal.direction === "down" && newVal.state === "go"){
+        clearInterval(timerDirectionFunctionDown.value);
+        timerDirectionFunctionDown.value = window.setInterval(() => {
+            //lower bound condition
+            if(top.value + movStep.value + spacecraftHeight.value > props.arenaHeight){
+                top.value = props.arenaHeight - spacecraftHeight.value;
+            }else{
+                top.value = top.value + movStep.value;
+            }
+        }, 10);
+        return null;        
     }
 });
 
@@ -75,7 +130,12 @@ watch(() => props.shoot, (newValue) => {
     if(newValue === "fire"){
         //Create new shot and add it into shot array.
         //Every shot is identify by (rand, margin left)
-        emit("shootEvent", {id: Math.random(), x: left.value  + (spacecraftWidth.value - 1)/2});
+        emit("shootEvent", 
+        {
+            id: Math.random(), 
+            x: left.value  + (spacecraftWidth.value - 1)/2, 
+            y: top.value
+        });
     }
 })
 
@@ -84,7 +144,7 @@ watch(() => props.shoot, (newValue) => {
 <style scoped>
     .spacecraftClass{
         position: absolute;
-        bottom: 0px;
+        /*bottom: 0px;*/
         display: flex;
         justify-content: center;
     }

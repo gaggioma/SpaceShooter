@@ -2,42 +2,43 @@
 
 <div class="arenaWrapper">
 
-<div class="statisticsClass">
- {{ "Total enemies: " + totalEnemis }}
- {{ "Destroied enemies: " + destroiedCount }}
- {{ "Accuracy: " + Math.round(destroiedCount/totalEnemis * 100) + "%" }}
-</div>
+    <div class="statisticsClass">
+    {{ "Total enemies: " + totalEnemis }}
+    {{ "Destroied enemies: " + destroiedCount }}
+    {{ "Accuracy: " + Math.round(destroiedCount/totalEnemis * 100) + "%" }}
+    </div>
 
- <div class="arenaClass" :style="{width: arenaWidth + 'px', height: arenaHeight + 'px'}">
+    <div class="arenaClass" :style="{width: arenaWidth + 'px', height: arenaHeight + 'px'}">
 
-    <Shot v-for="item in shotContainer" 
-    :key="item.id"
-    :id="item.id"
-    :x="item.x"
-    :y="item.y"
-    :height="shotHeight"
-    :width="shotWidth"
-    @shotMove="shotMoveHandler"
-    ></Shot>
+        <Shot v-for="item in shotContainer" 
+        :key="item.id"
+        :id="item.id"
+        :x="item.x"
+        :y="item.y"
+        :height="shotHeight"
+        :width="shotWidth"
+        @shotMove="shotMoveHandler"
+        ></Shot>
 
-    <Spacecraft
-    :direction="directionState"
-    :shoot="shootState"
-    :arenaWidth="arenaWidth"
-    :width="spacecraftWidth"
-    :height="spacecraftHeight"
-    @shootEvent="shootHandler">
-    </Spacecraft>
+        <Spacecraft
+        :direction="directionState"
+        :shoot="shootState"
+        :arenaWidth="arenaWidth"
+        :arenaHeight="arenaHeight"
+        :width="spacecraftWidth"
+        :height="spacecraftHeight"
+        @shootEvent="shootHandler">
+        </Spacecraft>
 
-    <Enemy v-for="enemy in enemyList"
-    :key="enemy.id"
-    :x="enemy.x"
-    :y="enemy.y"
-    :width="enemy.width"
-    :height="enemy.height"    
-    ></Enemy>
+        <Enemy v-for="enemy in enemyList"
+        :key="enemy.id"
+        :x="enemy.x"
+        :y="enemy.y"
+        :width="enemy.width"
+        :height="enemy.height"    
+        ></Enemy>
 
- </div>
+    </div>
 
 </div>
  
@@ -62,7 +63,7 @@ const arenaWidth = ref(1000)
 const arenaHeight = ref(800)
 
 //Direction state
-const directionState = ref("stop")
+const directionState = ref({direction: "all", state: "stop"})
 
 //Shot state
 const shootState = ref("stop")
@@ -85,39 +86,58 @@ const enemyList = ref([])
 const destroiedCount = ref(0)
 const totalEnemis = ref(0)
 
-//When key up stop direction and shot
+//When key up stop ONLY shot. Directions continue to drive spacecraft until bound reach.
 const handleKeyUp = (event) => {
     
-    //Direction
-    if(event.keyCode === 37 || event.keyCode === 39){
-        directionState.value = "stop";
-    }
-
-    //Fire
+    //Fire stop
     if(event.keyCode === 32){
         shootState.value = "stop";
+    }
+
+    if(event.keyCode === 37){
+        directionState.value = {direction: "left", state: "stop"};
+    }
+
+    if(event.keyCode === 38){
+        directionState.value = {direction: "up", state: "stop"};
+    }
+
+    if(event.keyCode === 39){
+        directionState.value = {direction: "right", state: "stop"};
+    }
+
+    if(event.keyCode === 40){
+        directionState.value = {direction: "down", state: "stop"};
     }
 }
 
 const handleKeyDown = (event) => {
-    //console.log("key down: " + event.keyCode)
-    if(event.keyCode === 39){
-        directionState.value = "right";
-    }
-
-    if(event.keyCode === 37){
-        directionState.value = "left";
-    }
 
     if(event.keyCode === 32){
         shootState.value = "fire";
+    }
+
+    if(event.keyCode === 37){
+        directionState.value = {direction: "left", state: "go"};
+    }
+
+    if(event.keyCode === 38){
+        directionState.value = {direction: "up", state: "go"};
+    }
+
+    if(event.keyCode === 39){
+        directionState.value = {direction: "right", state: "go"};
+    }
+
+    if(event.keyCode === 40){
+        directionState.value = {direction: "down", state: "go"};
     }
 }
 
 //Handle spacecraft shot
 const shootHandler = (shots) => {
     var shotArray = shotContainer.value;
-    shots["y"] = arenaHeight.value - spacecraftHeight.value - shotHeight.value;
+    shots["y"] = shots.y;
     shots["x"] = shots.x - (shotWidth.value - 1)/2;
     shotArray.push(shots)
     shotContainer.value = shotArray;
