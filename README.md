@@ -29,9 +29,23 @@ This component works like a H.O.C. which controls:
 ### Spacecraft
 
 Spacecraft has to:
-- move left when left keyboard is pushed 
-- move right when right keyborad is pushed
+- move in all 4 directions when left keyboard is pushed
 - shot a rocket when spacebar is pushed
+
+when a direction is pushed, every 10ms the coordinate changes using:
+
+```
+clearInterval(timerDirectionFunctionLeft.value);
+
+timerDirectionFunctionLeft.value = window.setInterval(() => {
+    if(left.value - movStep.value <= 0){
+        left.value = 0
+    }else{
+        left.value = left.value - movStep.value;    
+    }
+}, 10);
+        
+```
 
 ### Enemies
 
