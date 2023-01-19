@@ -44,9 +44,9 @@ Inside component, every 20ms, y coord is updated and an event is fired to the ar
 
 ## Results
 
-This roughtly video (handmade by smartphone 😂) shows final behaviour.
-This is a starting point for further improvements
+Video below shows the final behaviour.
+This could be a starting point for further improvements
 
-https://user-images.githubusercontent.com/64643932/211046565-3b2a0d18-860b-477d-abcc-1d09f9e08853.mp4
+https://user-images.githubusercontent.com/64643932/213450674-1f4c2b60-96db-4a07-b54d-be324f40130c.mp4
 
 ## Further improvements
