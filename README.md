@@ -20,19 +20,19 @@ In the follow a brief description.
 ### Arena
 
 This component works like a H.O.C. which controls:
-- spacecraft, enemies and shot cartesian coords
-- generates enemies every N ms
-- check if shot impacts enemy
-- check that all components stay inside a perimetral bounds
+- spacecraft, enemies and shot cartesian coords;
+- generates enemies every N ms;
+- check if shot impacts enemy. In this case the enemy is removed from enemy list;
+- check that all components stay inside a perimetral bounds;
 - create the listener for user interaction
 
 ### Spacecraft
 
-Spacecraft has to:
+Spacecraft can:
 - move in all 4 directions when left keyboard is pushed
 - shot a rocket when spacebar is pushed
 
-when a direction is pushed, every 10ms the coordinate changes using:
+when a direction is pushed, every 10ms the coordinate changes using this code:
 
 ```
 clearInterval(timerDirectionFunctionLeft.value);
@@ -49,11 +49,11 @@ timerDirectionFunctionLeft.value = window.setInterval(() => {
 
 ### Enemies
 
-Single enemy has been implemented like a component that contains a single image (randomically chosen) and by the props the Arena can change the cartesian coordinates to move image down.
+Single enemy has been implemented like a component that contains a single image (randomically chosen) with a random x-coord and by the props the Arena control its y-coord to move image down.
 
 ### Shot
 
-Shot is a component contains a single image, when user push spacebar button arena create new component with initial (x,y) coords (center of spacecraft).
+Shot is a component contains a single image, when user push spacebar button arena create new component with initial (x, y) coord (center of spacecraft).
 Inside component, every 20ms, y coord is updated and an event is fired to the arena which check if shot impact enemy. 
 
 ## Results
@@ -64,3 +64,5 @@ This could be a starting point for further improvements
 https://user-images.githubusercontent.com/64643932/213450674-1f4c2b60-96db-4a07-b54d-be324f40130c.mp4
 
 ## Further improvements
+
+Main idea is to develop a Python AI enemy detector that moves spacecraft in the right position to shot a rocket.
