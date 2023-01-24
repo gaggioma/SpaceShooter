@@ -65,7 +65,7 @@ https://user-images.githubusercontent.com/64643932/213450674-1f4c2b60-96db-4a07-
 
 ## Further improvements
 
-Main idea is to develop a Python AI Santa Claus detector (by means of [YOLOV5](https://github.com/ultralytics/yolov5)) that moves spacecraft in the right position to shot a rocket.
+Main idea is to develop a Python AI Santa Claus detector (by means of [YOLOv5](https://github.com/ultralytics/yolov5)) that moves spacecraft in the right position to shot a rocket.
 I suppose the detection will be like this:
 
 ![Immagine 2023-01-24 145812](https://user-images.githubusercontent.com/64643932/214315254-7d308931-9092-4e8e-b19f-af5256638466.jpg)
