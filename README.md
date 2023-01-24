@@ -32,7 +32,7 @@ Spacecraft can:
 - move in all 4 directions when keyboard directional keys are pushed
 - shot a rocket when spacebar is pushed
 
-In detail, when a direction is pushed every 10ms the coordinate changes using this code:
+In detail, when a direction event is fired, every 10ms the coordinate changes using this code:
 
 ```
 clearInterval(timerDirectionFunctionLeft.value);
@@ -49,11 +49,11 @@ timerDirectionFunctionLeft.value = window.setInterval(() => {
 
 ### Enemies
 
-Single enemy has been implemented like a component that contains a single image (randomically chosen) with a random x-coord and by the props the Arena control its y-coord to move image down.
+Single enemy has been implemented like a component that contains a single image (randomically chosen) with an intial random x-coord. By the props the Arena control its y-coord to scroll the image down.
 
 ### Shot
 
-Shot is a component contains a single image, when user push spacebar button arena create new component with initial (x, y) coord (center of spacecraft).
+Shot is a component contains a single image, when user push spacebar arena create new component with initial (x, y) coord (center of spacecraft).
 Inside component, every 20ms, y coord is updated and an event is fired to the arena which checks if shot impacts enemy. 
 
 ## Results
@@ -65,7 +65,7 @@ https://user-images.githubusercontent.com/64643932/213450674-1f4c2b60-96db-4a07-
 
 ## Further improvements
 
-Main idea is to develop a Python AI Santa Claus detector (by mean using YOLOVn) that moves spacecraft in the right position to shot a rocket.
+Main idea is to develop a Python AI Santa Claus detector (by means of [YOLOV5](https://github.com/ultralytics/yolov5)) that moves spacecraft in the right position to shot a rocket.
 I suppose the detection will be like this:
 
 ![Immagine 2023-01-24 145812](https://user-images.githubusercontent.com/64643932/214315254-7d308931-9092-4e8e-b19f-af5256638466.jpg)
