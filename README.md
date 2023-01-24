@@ -13,7 +13,7 @@ Mainly this game is composed by these elements:
 - [Enemies](#enemies)
 - [Shot](#enemies)
 
-All these elments have been implemented like Vue components.
+All these elEments have been implemented like Vue components.
 
 In the follow a brief description.
 
@@ -24,15 +24,15 @@ This component works like a H.O.C. which controls:
 - generates enemies every N ms;
 - check if shot impacts enemy. In this case the enemy is removed from enemy list;
 - check that all components stay inside a perimetral bounds;
-- create the listener for user interaction
+- create the listener for user interaction.
 
 ### Spacecraft
 
 Spacecraft can:
-- move in all 4 directions when left keyboard is pushed
+- move in all 4 directions when keyboard directional keys are pushed
 - shot a rocket when spacebar is pushed
 
-when a direction is pushed, every 10ms the coordinate changes using this code:
+In detail, when a direction is pushed every 10ms the coordinate changes using this code:
 
 ```
 clearInterval(timerDirectionFunctionLeft.value);
@@ -54,7 +54,7 @@ Single enemy has been implemented like a component that contains a single image 
 ### Shot
 
 Shot is a component contains a single image, when user push spacebar button arena create new component with initial (x, y) coord (center of spacecraft).
-Inside component, every 20ms, y coord is updated and an event is fired to the arena which check if shot impact enemy. 
+Inside component, every 20ms, y coord is updated and an event is fired to the arena which checks if shot impacts enemy. 
 
 ## Results
 
